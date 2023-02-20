@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <div className="container mx-auto">
+      <div className="container mx-auto mt-20">
         <Header />
         <Formulario />
         <ListadoPaciente />
