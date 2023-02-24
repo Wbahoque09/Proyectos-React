@@ -1,5 +1,19 @@
+import { useEffect, useState } from 'react';
+
 
 export const Formulario = () => {
+
+    const [nombre, setNombre] = useState('');
+
+    const handleInputChange = ({target}) => {
+        setNombre(target.value);
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log('Enviando Formulario');
+    }
+
 
     return(
 
@@ -12,7 +26,10 @@ export const Formulario = () => {
                     <span className="text-indigo-600 font-bold">Administralo</span>
                 </p>
 
-                <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10">
+                <form 
+                    onSubmit={handleSubmit}
+                    className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
+                >
                     <div className="mb-5">
                         <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">
                             Nombre Mascota
@@ -23,6 +40,9 @@ export const Formulario = () => {
                             type="text"
                             placeholder="Nombre de la Mascota"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                            value={ nombre }
+                            // onChange={ (e) => setNombre(e.target.value) } // Manera de Juan de hacer el onChange
+                            onChange={ handleInputChange }
                         />
 
                     </div>
