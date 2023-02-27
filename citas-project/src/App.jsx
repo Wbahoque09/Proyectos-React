@@ -12,10 +12,9 @@ function App() {
   // const sumaPrueba = () => {
   //   console.log(2 + 2);
   // }
-
-  const toma1Valor = (valor) => {
-    console.log(valor);
-  }
+  // const toma1Valor = (valor) => {
+  //   console.log(valor);
+  // }
   
   // <div className="App">
   //     <h1>{'Hello World'.toLowerCase()}</h1> {/* Se pone los corchetes para realizar metodos JS y estos no se muestren como textos, solo se imprimen expresiones*/}
@@ -28,10 +27,13 @@ function App() {
           // numeros={1}
           // isAdmin={false}
           // fn={sumaPrueba}
-          toma1Valor={toma1Valor}
+          // toma1Valor={toma1Valor}
         />
         <div className="mt-12 md:flex">
-          <Formulario />
+          <Formulario 
+            pacientes={pacientes}
+            setPacientes={setPacientes}
+          />
           <ListadoPaciente />
         </div>
       </div>

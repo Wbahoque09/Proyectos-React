@@ -1,14 +1,12 @@
 
 
-export const Header = ({toma1Valor}) => {
+export const Header = () => {
 
     // console.log(numeros);
     // console.log(isAdmin);
     // fn();
-
-    const variableHeader = true;
-
-    toma1Valor(variableHeader);
+    // const variableHeader = true;
+    // toma1Valor(variableHeader);
 
     return(
 

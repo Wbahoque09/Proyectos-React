@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 
-export const Formulario = () => {
+export const Formulario = ({pacientes,setPacientes}) => {
 
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -24,6 +24,24 @@ export const Formulario = () => {
             setError(true);
         } else {
             setError(false);
+            // Se crea un objeto de pacientes
+            const objetoPaciente = {
+                nombre, 
+                propietario, 
+                email, 
+                alta, 
+                sintomas
+            } 
+            // console.log(objetoPaciente);
+            setPacientes([...pacientes, objetoPaciente]);
+
+            // Reiniciar el form
+            setNombre('');
+            setPropietario('');
+            setEmail('');
+            setAlta('');
+            setSintomas('');
+
         }
 
         // console.log('Enviando Formulario');
