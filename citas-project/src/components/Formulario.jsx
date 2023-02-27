@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 export const Formulario = () => {
 
     const [nombre, setNombre] = useState('');
+    const [propietario, setPropietario] = useState('');
+    const [email, setEmail] = useState('');
+    const [alta, setAlta] = useState('');
+    const [sintomas, setSintomas] = useState('');
 
     const handleInputChange = ({target}) => {
         setNombre(target.value);
@@ -11,6 +15,9 @@ export const Formulario = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        
+
         console.log('Enviando Formulario');
     }
 
@@ -18,7 +25,7 @@ export const Formulario = () => {
     return(
 
         <>
-            <div className="md:w-1/2 lg:w-2/5">
+            <div className="md:w-1/2 lg:w-2/5 mx-5">
                 <h2 className='font-black text-3xl text-center'>Seguimiento pacientes</h2>
 
                 <p className="text-lg mt-5 text-center mb-10">
@@ -57,6 +64,8 @@ export const Formulario = () => {
                             type="text"
                             placeholder="Nombre del Propietario"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                            value={ propietario }
+                            onChange={ (e) => setPropietario(e.target.value) }
                         />
 
                     </div>
@@ -71,6 +80,8 @@ export const Formulario = () => {
                             type="email"
                             placeholder="Email Contacto Propietario"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                            value={ email }
+                            onChange={ (e) => setEmail(e.target.value) }
                         />
 
                     </div>
@@ -84,6 +95,8 @@ export const Formulario = () => {
                             id="alta" 
                             type="date"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                            value={ alta }
+                            onChange={ (e) => setAlta(e.target.value) }
                         />
 
                     </div>
@@ -97,6 +110,8 @@ export const Formulario = () => {
                             id="sintomas"
                             placeholder="Describe los Sintomas"
                             className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
+                            value={ sintomas }
+                            onChange={ (e) => setSintomas(e.target.value) }
                         />
 
                     </div>
