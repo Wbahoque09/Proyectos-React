@@ -16,9 +16,14 @@ export const Formulario = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        
+        // Validacion del formulario
+        if ([nombre, propietario, email, alta, sintomas].includes('')) {
+            console.log('Hay Al menos un campo vacio ')
+        } else {
+            console.log('Todos llenos');
+        }
 
-        console.log('Enviando Formulario');
+        // console.log('Enviando Formulario');
     }
 
 
