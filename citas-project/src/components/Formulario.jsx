@@ -9,6 +9,8 @@ export const Formulario = () => {
     const [alta, setAlta] = useState('');
     const [sintomas, setSintomas] = useState('');
 
+    const [error, setError] = useState(false);
+
     const handleInputChange = ({target}) => {
         setNombre(target.value);
     }
@@ -18,9 +20,10 @@ export const Formulario = () => {
 
         // Validacion del formulario
         if ([nombre, propietario, email, alta, sintomas].includes('')) {
-            console.log('Hay Al menos un campo vacio ')
+            console.log('Hay Al menos un campo vacio ');
+            setError(true);
         } else {
-            console.log('Todos llenos');
+            setError(false);
         }
 
         // console.log('Enviando Formulario');
@@ -42,6 +45,12 @@ export const Formulario = () => {
                     onSubmit={handleSubmit}
                     className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
                 >
+                    {/* Dentro de la expresion javaScript se ponen los parentesis para poder trabajar el html ed formal normal */}
+                    { error && ( 
+                    <div className="bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded-md">
+                        <p>Todos los campos son obligatorios</p>
+                    </div> 
+                    )} 
                     <div className="mb-5">
                         <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">
                             Nombre Mascota
