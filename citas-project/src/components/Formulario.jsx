@@ -66,7 +66,8 @@ export const Formulario = ({pacientes,setPacientes}) => {
                     className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
                 >
                     {/* Dentro de la expresion javaScript se ponen los parentesis para poder trabajar el html ed formal normal */}
-                    { error && <Error mensaje="Todos los campos son obligatorios"/>} 
+                    {/* { error && <Error mensaje="Todos los campos son obligatorios"/>} Forma normal de pasar las props */}
+                    { error && <Error>Todos los campos son obligatorios</Error>}
                     <div className="mb-5">
                         <label htmlFor="mascota" className="block text-gray-700 uppercase font-bold">
                             Nombre Mascota
