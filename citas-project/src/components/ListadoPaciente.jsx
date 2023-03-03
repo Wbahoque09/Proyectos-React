@@ -3,7 +3,9 @@ import { Paciente } from './Paciente';
 
 
 
-export const ListadoPaciente = () => {
+export const ListadoPaciente = ({pacientes}) => {
+
+  // console.log(pacientes);  
   return (
     <>
       <div className="md:m-1/2  lg:w-3/5 md:h-screen overflow-y-scroll">
@@ -13,10 +15,13 @@ export const ListadoPaciente = () => {
           <span className="text-indigo-600 font-bold">Pacientes y Citas</span>
         </p>
 
-        <Paciente />
-        <Paciente />
-        <Paciente />
-        <Paciente />        
+        {pacientes.map( (paciente, index) => (
+          <Paciente
+            key={index}
+            paciente={paciente}
+          /> 
+        ))}
+        {/* Cuando se haga un .map siempre se debe pasar una key en lasprops para evitar errores */}
 
       </div>
     </>

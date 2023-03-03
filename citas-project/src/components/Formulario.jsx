@@ -22,7 +22,7 @@ export const Formulario = ({pacientes,setPacientes}) => {
 
         // Validacion del formulario
         if ([nombre, propietario, email, alta, sintomas].includes('')) {
-            console.log('Hay Al menos un campo vacio ');
+            // console.log('Hay Al menos un campo vacio ');
             setError(true);
         } else {
             setError(false);
