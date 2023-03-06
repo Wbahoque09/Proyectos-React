@@ -14,7 +14,13 @@ export const Formulario = ({pacientes,setPacientes,paciente}) => {
     const [error, setError] = useState(false);
 
     useEffect(() => {
-        console.log(paciente);
+        if (Object.keys(paciente).length > 0) {
+            setNombre(paciente.nombre);
+            setPropietario(paciente.propietario);
+            setEmail(paciente.email);
+            setAlta(paciente.alta);
+            setSintomas(paciente.sintomas);
+        }
     }, [paciente]);
     // este useEffect se dispara solo cuando se presiona el boton de editar, porque se le pasa la dependencia de las props y se ejecutara cada vez que paciente cambie
 
@@ -170,7 +176,7 @@ export const Formulario = ({pacientes,setPacientes,paciente}) => {
                     <input 
                         type="submit"
                         className="bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors"
-                        value="Agregar Paciente" 
+                        value={paciente.id ? "Editar Paciente" : "Agregar Paciente"} 
                     />
                 </form>
 
