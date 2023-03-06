@@ -3,7 +3,7 @@ import { Error } from './Error';
 
 
 
-export const Formulario = ({pacientes,setPacientes}) => {
+export const Formulario = ({pacientes,setPacientes,paciente}) => {
 
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -12,6 +12,17 @@ export const Formulario = ({pacientes,setPacientes}) => {
     const [sintomas, setSintomas] = useState('');
 
     const [error, setError] = useState(false);
+
+    useEffect(() => {
+        console.log(paciente);
+    }, [paciente]);
+    // este useEffect se dispara solo cuando se presiona el boton de editar, porque se le pasa la dependencia de las props y se ejecutara cada vez que paciente cambie
+
+    // useEffect(() => {
+    //     console.log("El componente esta listo");
+    // }, []);
+    // este useEffect se dispara una vez porque no se le esta pasando ninguna dependencia
+    
 
     const generarId = () => {
         const random = Math.random().toString(36).substring(2);
@@ -55,6 +66,8 @@ export const Formulario = ({pacientes,setPacientes}) => {
 
         // console.log('Enviando Formulario');
     }
+
+    // console.log(paciente);
 
 
     return(

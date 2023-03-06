@@ -1,3 +1,4 @@
+// import { useEffect } from 'react';
 import { Paciente } from './Paciente';
 
 
@@ -7,6 +8,14 @@ export const ListadoPaciente = ({pacientes,setPaciente}) => {
 
   // console.log(pacientes);
   // console.log(pacientes && pacientes.length);
+
+  // useEffect(() => {
+  //   if (pacientes.length > 0) {
+  //     console.log("Nuevo paciente agregado");
+  //   }
+        
+  //   }, [pacientes]);
+
   return (
     <>
       <div className="md:m-1/2  lg:w-3/5 md:h-screen overflow-y-scroll">

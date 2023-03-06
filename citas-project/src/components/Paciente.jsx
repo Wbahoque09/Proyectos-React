@@ -1,6 +1,12 @@
+// import { useEffect } from 'react';
 
 
 export const Paciente = ({paciente, setPaciente}) => {
+
+    // useEffect(() => {
+    //     console.log("El componente esta listo");
+    // }, []);
+    // este useEffect se dispara una vez porque no se le esta pasando ninguna dependencia
 
     const {nombre} = paciente; 
     const {propietario} = paciente; 
