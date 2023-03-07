@@ -3,7 +3,7 @@ import { Error } from './Error';
 
 
 
-export const Formulario = ({pacientes,setPacientes,paciente}) => {
+export const Formulario = ({pacientes,setPacientes,paciente,setPaciente}) => {
 
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -49,17 +49,34 @@ export const Formulario = ({pacientes,setPacientes,paciente}) => {
             setError(true);
         } else {
             setError(false);
-            // Se crea un objeto de pacientes
+            // Se crea un objeto de pacientes, en este objeto se crea un nuevo paciente
             const objetoPaciente = {
                 nombre, 
                 propietario, 
                 email, 
                 alta, 
                 sintomas,
-                id: generarId(),
-            } 
+            }
+            
+            // paciente.id es el objeto que se esta recibiendo del componente App.jsx, y pues este ya trae algo, con esto sabemos si estamos creando o editando un objeto
+            if (paciente.id) {
+                objetoPaciente.id = paciente.id;
+                const pacientesActualizados = pacientes.map(pacienteState => pacienteState.id === paciente.id 
+                    ? objetoPaciente : pacienteState ); // Este .map lo que hace es recorrer por cada lista de pacientes ya creada verificar si encuentra el id guarda los cambios que se hayan hecho sino deja todo como está.
+
+                setPacientes(pacientesActualizados);
+                setPaciente({}); // Esto es para limpiar el state
+                // console.log(objetoPaciente); Para comprobar el cambio o cambios que se hacen en el objeto por el ID
+                // console.log(paciente); Imprime el objeto sin el ID y sin los cambios
+                // Editando el Registro
+            } else {
+                // Nuevo registro
+                objetoPaciente.id = generarId();
+                setPacientes([...pacientes, objetoPaciente]); // Aqui tomamos una copia del state y le agregamos el nuevo paciente
+            }
+
             // console.log(objetoPaciente);
-            setPacientes([...pacientes, objetoPaciente]);
+            
 
             // Reiniciar el form
             setNombre('');
