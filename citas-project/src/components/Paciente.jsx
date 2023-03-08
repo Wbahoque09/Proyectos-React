@@ -1,7 +1,7 @@
 // import { useEffect } from 'react';
 
 
-export const Paciente = ({paciente, setPaciente}) => {
+export const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
 
     // useEffect(() => {
     //     console.log("El componente esta listo");
@@ -12,7 +12,16 @@ export const Paciente = ({paciente, setPaciente}) => {
     const {propietario} = paciente; 
     const {email} = paciente; 
     const {alta} = paciente; 
-    const {sintomas} = paciente; 
+    const {sintomas} = paciente;
+    const {id} = paciente;
+    
+    const handleEliminar = () => {
+        const respuesta = confirm("Deseas eliminar este paciente?");
+
+        if (respuesta) {
+            eliminarPaciente(id);   
+        }
+    }
 
   return (
     <>
@@ -53,6 +62,7 @@ export const Paciente = ({paciente, setPaciente}) => {
                 <button 
                     type="button"
                     className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white font-bold uppercase rounded-lg"
+                    onClick={handleEliminar}
                 >
                     Eliminar
                 </button>

@@ -4,7 +4,7 @@ import { Paciente } from './Paciente';
 
 
 
-export const ListadoPaciente = ({pacientes,setPaciente}) => {
+export const ListadoPaciente = ({pacientes,setPaciente,eliminarPaciente}) => {
 
   // console.log(pacientes);
   // console.log(pacientes && pacientes.length);
@@ -33,6 +33,7 @@ export const ListadoPaciente = ({pacientes,setPaciente}) => {
                 key={paciente.id}
                 paciente={paciente}
                 setPaciente={setPaciente}
+                eliminarPaciente={eliminarPaciente}
               /> 
             ))}
             {/* Cuando se haga un .map siempre se debe pasar una key en lasprops para evitar errores */} 
