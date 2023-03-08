@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { Formulario } from './components/Formulario';
 import { ListadoPaciente } from './components/ListadoPaciente';
@@ -10,6 +10,21 @@ function App() {
   const [pacientes, setPacientes] = useState([]);
   const [paciente, setPaciente] = useState({});
 
+  useEffect(() => {
+    const obtenerLS = () => {
+      const pacientesLS = JSON.parse(localStorage.getItem("pacientes")) ?? [];
+      setPacientes(pacientesLS);
+    }
+    obtenerLS();
+  }, []); // Este useEffect se utiliza para obtener lo que tenga el localStorage y no se pierda lo que se haya guardado
+  
+  
+  useEffect(() => {
+    localStorage.setItem("pacientes", JSON.stringify( pacientes ));
+  }, [pacientes]); // Aqui en este useEffect se le pasa lo que tiene el useEffect de pacientes
+
+  // El orden de los useEffwct importa porque se van a ejecutar en el orden en que se declaran
+  
   const eliminarPaciente = (id) => {
     const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id );
     setPacientes(pacientesActualizados);
