@@ -7,7 +7,7 @@ import { ListadoPaciente } from './components/ListadoPaciente';
 
 function App() {
 
-  const [pacientes, setPacientes] = useState([]);
+  const [pacientes, setPacientes] = useState([]); // Este useState se crea para llenar los datos que son traidos desde el componente Formulario.jsx, setPacientes nos va a permitir llenar los pacientes en este useState
   const [paciente, setPaciente] = useState({});
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function App() {
     localStorage.setItem("pacientes", JSON.stringify( pacientes ));
   }, [pacientes]); // Aqui en este useEffect se le pasa lo que tiene el useEffect de pacientes
 
-  // El orden de los useEffwct importa porque se van a ejecutar en el orden en que se declaran
+  // El orden de los useEffect importa porque se van a ejecutar en el orden en que se declaran
   
   const eliminarPaciente = (id) => {
     const pacientesActualizados = pacientes.filter( paciente => paciente.id !== id );
