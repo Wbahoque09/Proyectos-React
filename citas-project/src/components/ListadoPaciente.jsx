@@ -36,7 +36,7 @@ export const ListadoPaciente = ({pacientes,setPaciente,eliminarPaciente}) => {
                 eliminarPaciente={eliminarPaciente}
               /> 
             ))}
-            {/* Cuando se haga un .map siempre se debe pasar una key en lasprops para evitar errores */} 
+            {/* Cuando se haga un .map siempre se debe pasar una key en las props para evitar errores */} 
 
           </>
         )

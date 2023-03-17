@@ -87,7 +87,7 @@ export const Formulario = ({pacientes,setPacientes,paciente,setPaciente}) => {
 
         }
 
-        // console.log('Enviando Formulario');
+        // console.log('Enviando Formulario'); 
     }
 
     // console.log(paciente);
@@ -108,7 +108,7 @@ export const Formulario = ({pacientes,setPacientes,paciente,setPaciente}) => {
                     onSubmit={handleSubmit}
                     className="bg-white shadow-md rounded-lg py-10 px-5 mb-10"
                 >
-                    {/* Dentro de la expresion javaScript se ponen los parentesis para poder trabajar el html ed formal normal */}
+                    {/* Dentro de la expresion javaScript se ponen los parentesis para poder trabajar el html de formal normal */}
                     {/* { error && <Error mensaje="Todos los campos son obligatorios"/>} Forma normal de pasar las props */}
                     { error && <Error>Todos los campos son obligatorios</Error>}
                     <div className="mb-5">

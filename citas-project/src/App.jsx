@@ -7,8 +7,8 @@ import { ListadoPaciente } from './components/ListadoPaciente';
 
 function App() {
 
-  const [pacientes, setPacientes] = useState([]); // Este useState se crea para llenar los datos que son traidos desde el componente Formulario.jsx, setPacientes nos va a permitir llenar los pacientes en este useState
-  const [paciente, setPaciente] = useState({});
+  const [pacientes, setPacientes] = useState([]); // Este useState se crea para llenar los datos que son traidos desde el componente Formulario.jsx, setPacientes nos va a permitir llenar los pacientes en este useState, adicional "pacientes" en este state cumple la funcion de mandar los datos hacia los demas componentes
+  const [paciente, setPaciente] = useState({}); // ESte useState es para manejar los cambios de los los pacientes, aqui se llena por medio del boton "editar"
 
   useEffect(() => {
     const obtenerLS = () => {
@@ -73,3 +73,6 @@ export default App;
 
 // Los props o propiedades se utilizan para pasar los componentes del padre al hijo, para hacerlo viceversa no es reconmendable hacerlo y si se llegase a usar se tienen que hacer varias cosas. 
 // Si hay un useState que se va a pasar por diferentes componentes, lo mejor es colocarlo en el archivo principal
+
+// useEffect siempre es un callback, que se ejecuta cuando un state cambia o cuando el componente esta listo
+// Usos useEffect: Al ejecutarse automaticamente cuando el componente esta listo, es un excelente lugar para colocar codigo para consultar una API o LocalStorage, debido a que le podemos pasar una depedencia y estar escuchando por los cambios que sucedan en una variable, puede actualizar el componente cuando ese cambio suceda  
