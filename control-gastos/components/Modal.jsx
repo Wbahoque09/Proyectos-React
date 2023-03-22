@@ -1,6 +1,12 @@
+import { useState } from 'react';
+
 import CerrarModalImg from '../src/assets/img/cerrar.svg';
 
 export const Modal = ({setModal, animarModal, setAnimarModal}) => {
+
+    const [nombre, setNombre] = useState('');
+    const [cantidad, setCantidad] = useState('');
+    const [categoria, setCategoria] = useState('');
 
     const ocultarModal = () => {
 
@@ -32,6 +38,8 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
                         id="nombre"
                         type="text"
                         placeholder="Añade el Nombre del Gasto"
+                        value={nombre}
+                        onChange={(e) => setNombre(e.target.value)}
                     />
                 </div>
 
@@ -42,6 +50,8 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
                         id="cantidad"
                         type="number"
                         placeholder="Añade la cantidad del gasto: ej. 300"
+                        value={cantidad}
+                        onChange={(e) => setCantidad(Number(e.target.value))}
                     />
                 </div>
 
@@ -49,8 +59,9 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
                     <label htmlFor="categoria">Categoria</label>
 
                     <select 
-                        name="" 
                         id="categoria"
+                        value={categoria}
+                        onChange={ (e) => setCategoria(e.target.value)}
                     >
                         <option value="">-- Seleccione --</option>
                         <option value="ahorro">Ahorro</option>
