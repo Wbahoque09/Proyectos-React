@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Header } from '../components/Header';
+import { Modal } from '../components/Modal';
 import IconoImg from './assets/img/nuevo-gasto.svg';
 
 
@@ -11,7 +12,7 @@ export const App = () => {
   const [modal, setModal] = useState(false); // Se utiliza este State para controlar la visualizacion de la ventana modal
 
   const handleNuevoGasto = () => {
-    setModal(true);
+    setModal(true); // Aqui se habilita la vista del modal
   }
 
   return (
@@ -33,7 +34,10 @@ export const App = () => {
           </div>
         )}
 
-        {modal && <p>Desde Modal</p>}
+        {modal && 
+        <Modal
+        setModal={setModal} // Se pasa como property para configurar la vista del modal
+        />}
       </div>
     </>  
   )
