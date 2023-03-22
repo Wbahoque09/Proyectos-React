@@ -17,6 +17,10 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
         }, 780);
     }
 
+    const handleSubmit = () =>{
+        
+    }
+
   return (
     <>
         <div className="modal">
@@ -27,7 +31,10 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
                     onClick={ocultarModal}
                 />
             </div>
-            <form className={`formulario ${animarModal ? "animar" : "cerrar"}`}> 
+            <form 
+            onSubmit={handleSubmit}
+            className={`formulario ${animarModal ? "animar" : "cerrar"}`}
+            > 
             {/* En la className anterior se puede ver como tratar clases css de manera dinamica en react */}
                 <legend>Nuevo Gasto</legend>
 
