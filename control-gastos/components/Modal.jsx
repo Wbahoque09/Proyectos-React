@@ -1,8 +1,11 @@
 import { useState } from 'react';
 
 import CerrarModalImg from '../src/assets/img/cerrar.svg';
+import { Mensaje } from './Mensaje';
 
-export const Modal = ({setModal, animarModal, setAnimarModal}) => {
+export const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
+
+    const [mensaje, setMensaje] = useState('');
 
     const [nombre, setNombre] = useState('');
     const [cantidad, setCantidad] = useState('');
@@ -17,8 +20,19 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
         }, 780);
     }
 
-    const handleSubmit = () =>{
-        
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+
+        if ([ nombre, cantidad, categoria].includes('')) {
+            setMensaje("Todos los campos son obligatorios");
+
+            setTimeout(() => {
+                setMensaje('');
+            }, 2000);
+            return;
+        }
+
+        guardarGasto({nombre, cantidad, categoria}); // Aqui se pasan al App.jsx los datos del formulario
     }
 
   return (
@@ -37,7 +51,7 @@ export const Modal = ({setModal, animarModal, setAnimarModal}) => {
             > 
             {/* En la className anterior se puede ver como tratar clases css de manera dinamica en react */}
                 <legend>Nuevo Gasto</legend>
-
+                {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
                 <div className="campo">
                     <label htmlFor="nombre">Nombre Gastos</label>
 
