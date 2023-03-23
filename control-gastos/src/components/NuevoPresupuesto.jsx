@@ -9,8 +9,12 @@ export const NuevoPresupuesto = ( {presupuesto, setPresupuesto, setIsValidPresup
     const handlePresupuesto = (e) => {
         e.preventDefault();
 
-        if(!presupuesto || presupuesto < 0){
+        if(!presupuesto || presupuesto <= 0){
             setMensaje("No es un presupuesto válido");
+            setTimeout(() => {
+                setMensaje(''); // Se controla el tiempo de visualizacion del mensaje y se vuelve a ocultar
+            }, 1500);
+            
             return
         }
         setMensaje(''); // Esto se hace para no mostrar mensaje por si se escribe bien el presupuesto

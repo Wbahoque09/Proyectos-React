@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import CerrarModalImg from '../src/assets/img/cerrar.svg';
+import CerrarModalImg from '../assets/img/cerrar.svg';
 import { Mensaje } from './Mensaje';
 
 export const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
@@ -28,7 +28,7 @@ export const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => 
 
             setTimeout(() => {
                 setMensaje('');
-            }, 2000); // Este setTimeout es para quitar o cultar el mensaje despues de un determinado tiempo
+            }, 2000); // Este setTimeout es para quitar o ocultar el mensaje despues de un determinado tiempo
             return;
         }
 

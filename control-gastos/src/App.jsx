@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Header } from '../components/Header';
-import { Modal } from '../components/Modal';
-import { generarID } from '../helpers';
+import { Header } from './components/Header';
+import { ListadoGastos } from './components/ListadoGastos';
+import { Modal } from './components/Modal';
+import { generarID } from '../src/helpers';
 import IconoImg from './assets/img/nuevo-gasto.svg';
+
 
 
 
@@ -44,13 +46,20 @@ export const App = () => {
           setIsValidPresupuesto={setIsValidPresupuesto}
         />
         {isValidPresupuesto && (
-          <div className="nuevo-gasto">
-            <img
-              src={IconoImg}
-              alt="icono nuevo gasto"
-              onClick={handleNuevoGasto}
+          <>
+          <main>
+            <ListadoGastos
+              gastos={gastos}
             />
-          </div>
+          </main>
+            <div className="nuevo-gasto">
+              <img
+                src={IconoImg}
+                alt="icono nuevo gasto"
+                onClick={handleNuevoGasto}
+              />
+            </div>
+          </>
         )}
 
         {modal && 
@@ -59,7 +68,8 @@ export const App = () => {
             animarModal={animarModal} // Lo mismo del anterior
             setAnimarModal={setAnimarModal} // Lo mismo del anterior
             guardarGasto={guardarGasto} // Se pasa para "traer" los datos obtenidos en el formulario del modal
-          />}
+          />
+        }
       </div>
     </>  
   )
