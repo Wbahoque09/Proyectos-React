@@ -28,7 +28,7 @@ export const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => 
 
             setTimeout(() => {
                 setMensaje('');
-            }, 2000);
+            }, 2000); // Este setTimeout es para quitar o cultar el mensaje despues de un determinado tiempo
             return;
         }
 

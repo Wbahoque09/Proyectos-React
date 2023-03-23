@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Header } from '../components/Header';
 import { Modal } from '../components/Modal';
+import { generarID } from '../helpers';
 import IconoImg from './assets/img/nuevo-gasto.svg';
 
 
@@ -22,7 +23,15 @@ export const App = () => {
   }
 
   const guardarGasto = (gasto) => {
-    console.log(gasto);
+    gasto.id = generarID(); // Aqui agregamos al objeto el id que se genera
+    setGastos([...gastos, gasto]); // Aqui se actualiza el state de gastos, recibiendo lo que viene del componente modal.jsx "gasto"
+
+    setAnimarModal(false); // Lo mismo del anterior(setTimeout ubicado en guardarGasto)
+
+        setTimeout(() => {
+            setModal(false); // Se recibe para volver a configurar la vista del setModal            
+        }, 780);
+
   } // Este es el "ejemplo" de como el padre le pide al componente hijo informacion
 
   return (
