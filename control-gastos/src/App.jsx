@@ -26,6 +26,7 @@ export const App = () => {
 
   const guardarGasto = (gasto) => {
     gasto.id = generarID(); // Aqui agregamos al objeto el id que se genera
+    gasto.fecha = Date.now(); // Aqui agregamos la fecha al objeto
     setGastos([...gastos, gasto]); // Aqui se actualiza el state de gastos, recibiendo lo que viene del componente modal.jsx "gasto"
 
     setAnimarModal(false); // Lo mismo del anterior(setTimeout ubicado en guardarGasto)
