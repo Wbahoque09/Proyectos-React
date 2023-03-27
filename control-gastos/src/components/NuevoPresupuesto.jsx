@@ -19,7 +19,9 @@ export const NuevoPresupuesto = ( {presupuesto, setPresupuesto, setIsValidPresup
         }
         setMensaje(''); // Esto se hace para no mostrar mensaje por si se escribe bien el presupuesto
         setIsValidPresupuesto(true); // Se le pasa la funcion modificadora del state en App.jsx y se coloca en true para que desde el componente Header.jsx se pueda validar si se muestra un Nuevo componente o se muestra el inicio para definir el presupuesto
+
     }
+
 
     return (
         <>

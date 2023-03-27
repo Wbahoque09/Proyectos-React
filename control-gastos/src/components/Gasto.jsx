@@ -1,15 +1,42 @@
 import { formatearFecha } from '../helpers';
 
+import IconoAhorro from '../assets/img/icono_ahorro.svg';
+import IconoCasa from '../assets/img/icono_casa.svg';
+import IconoComida from '../assets/img/icono_comida.svg';
+import IconoGastos from '../assets/img/icono_gastos.svg';
+import IconoOcio from '../assets/img/icono_ocio.svg';
+import IconoSalud from '../assets/img/icono_salud.svg';
+import IconoSuscripciones from '../assets/img/icono_suscripciones.svg';
 
 export const Gasto = ({gasto}) => {
 
+  const diccionariosIconos = {
+    ahorro: IconoAhorro,
+    comida: IconoComida,
+    casa: IconoCasa,
+    gastos: IconoGastos,
+    motel: IconoOcio,
+    salud: IconoSalud,
+    suscripciones: IconoSuscripciones,
+  } // Este diccionario se crea para continuar con el dinamismo y poder buscar la imagen al gasto indicado
+
   const {categoria, nombre, cantidad, id, fecha} = gasto; // Desestructuracion de gasto
+
+  const formatearCantidad = (cantidad) => {
+    return Number(cantidad).toLocaleString('es-CO', {
+        style: 'currency',
+        currency: 'COP'
+    });
+}
 
   return (
     <>
         <div className="gasto sombra">
             <div className="contenido-gasto">
-              {/* Imagen */}
+              <img
+                src={diccionariosIconos[categoria]}
+                alt={`Icono ${categoria}`}
+              />
               <div className="descripcion-gasto">
                 <p className="categoria">{categoria}</p>
                 <p className="nombre-gasto">{nombre}</p>
@@ -20,7 +47,7 @@ export const Gasto = ({gasto}) => {
               </div>
 
             </div>
-            <p className="cantidad-gasto">${cantidad}</p>
+            <p className="cantidad-gasto">{formatearCantidad(cantidad)}</p>
         </div>
     </>
   )
