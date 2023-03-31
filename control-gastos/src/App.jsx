@@ -41,6 +41,7 @@ export const App = () => {
     <>
       <div className={ modal ? 'fijar' : '' }>
         <Header
+          gastos={gastos} // Se pasan los gastos para empezar hacer los calculos de presupuestos
           presupuesto={presupuesto}
           setPresupuesto={setPresupuesto}
           isValidPresupuesto={isValidPresupuesto}
