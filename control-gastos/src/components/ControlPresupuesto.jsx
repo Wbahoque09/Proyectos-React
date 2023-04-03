@@ -26,24 +26,24 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
 
     // console.log(formatearCantidad()); No sirve :V
 
-  return (
-    <>
-        <div className="contenedor-presupuesto contenedor sombra dos-columnas">
-            <div>
-                Grafica aqui
+    return (
+        <>
+            <div className="contenedor-presupuesto contenedor sombra dos-columnas">
+                <div>
+                    Grafica aqui
+                </div>
+                <div className="contenido-presupuesto">
+                    <p>
+                        <span>Presupuesto: </span> {formatearCantidad(presupuesto)}
+                    </p>
+                    <p>
+                        <span>Disponible: </span> {formatearCantidad(disponible)}
+                    </p>
+                    <p>
+                        <span>Gastado: </span> {formatearCantidad(gastado)}
+                    </p>
+                </div>
             </div>
-            <div className="contenido-presupuesto">
-                <p>
-                    <span>Presupuesto: </span> {formatearCantidad(presupuesto)}
-                </p>
-                <p>
-                    <span>Disponible: </span> {formatearCantidad(disponible)}
-                </p>
-                <p>
-                    <span>Gastado: </span> {formatearCantidad(gastado)}
-                </p>
-            </div>
-        </div>
-    </>
-  )
+        </>
+    )
 }
