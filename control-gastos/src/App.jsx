@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { ListadoGastos } from './components/ListadoGastos';
 import { Modal } from './components/Modal';
@@ -15,6 +15,14 @@ export const App = () => {
   const [modal, setModal] = useState(false); // Se utiliza este State para controlar la visualizacion de la ventana modal
   const [animarModal, setAnimarModal] = useState(false); // Este useState se utiliza para controlar la visualizacion de la animacion (css)
   const [gastos, setGastos] = useState([]); // Este useState se usa para guardar el estado de los datos del formulario por medio de la funcion "guardarGasto"
+  const [gastoEditar, setGastoEditar] = useState({}); // Este useState se crea para pasar al modal y revisar si hay que editar
+
+  useEffect(() => {
+    if (Object.keys(gastoEditar).length > 0) {
+      handleNuevoGasto();
+    }
+  }, [gastoEditar]) // Este useEffect se crea para llamar o activar al modal cada vez que se vaya a editar un gasto
+  
 
   const handleNuevoGasto = () => {
     setModal(true); // Aqui se habilita la vista del modal
@@ -39,7 +47,7 @@ export const App = () => {
 
   return (
     <>
-      <div className={ modal ? 'fijar' : '' }>
+      <div className={ modal ? "fijar" : "" }>
         <Header
           gastos={gastos} // Se pasan los gastos para empezar hacer los calculos de presupuestos
           presupuesto={presupuesto}
@@ -52,6 +60,7 @@ export const App = () => {
           <main>
             <ListadoGastos
               gastos={gastos}
+              setGastoEditar={setGastoEditar}
             />
           </main>
             <div className="nuevo-gasto">
