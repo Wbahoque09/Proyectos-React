@@ -19,13 +19,18 @@ export const App = () => {
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
-      handleNuevoGasto();
+      setModal(true); // Aqui se habilita la vista del modal
+
+      setTimeout(() => {
+        setAnimarModal(true); // Aqui se cambia el useState para mostrar en el modal las animaciones
+      }, 870); // Este setTimeout se crea para tratar animaciones desde el css
     }
   }, [gastoEditar]) // Este useEffect se crea para llamar o activar al modal cada vez que se vaya a editar un gasto
   
 
   const handleNuevoGasto = () => {
     setModal(true); // Aqui se habilita la vista del modal
+    setGastoEditar({}); // Esto se hace para evitar que el gasto a editar siga manteniendose aun despues de haberse cerrado
 
     setTimeout(() => {
       setAnimarModal(true); // Aqui se cambia el useState para mostrar en el modal las animaciones
@@ -79,6 +84,7 @@ export const App = () => {
             animarModal={animarModal} // Lo mismo del anterior
             setAnimarModal={setAnimarModal} // Lo mismo del anterior
             guardarGasto={guardarGasto} // Se pasa para "traer" los datos obtenidos en el formulario del modal
+            gastoEditar={gastoEditar} // Se pasa para que el modal sepa que gasto esta seleccionado
           />
         }
       </div>

@@ -1,15 +1,30 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import CerrarModalImg from '../assets/img/cerrar.svg';
 import { Mensaje } from './Mensaje';
 
-export const Modal = ({setModal, animarModal, setAnimarModal, guardarGasto}) => {
+export const Modal = ({
+    setModal, 
+    animarModal, 
+    setAnimarModal, 
+    guardarGasto,
+    gastoEditar
+}) => {
 
     const [mensaje, setMensaje] = useState('');
 
     const [nombre, setNombre] = useState('');
     const [cantidad, setCantidad] = useState('');
     const [categoria, setCategoria] = useState('');
+
+    useEffect(() => {
+        if (Object.keys(gastoEditar).length > 0) {
+            setNombre(gastoEditar.nombre)
+            setCantidad(gastoEditar.cantidad)
+            setCategoria(gastoEditar.categoria)
+        }
+    }, []); // Este useEffect se crea para que el componente se monte cuando este listo
+    
 
     const ocultarModal = () => {
 
