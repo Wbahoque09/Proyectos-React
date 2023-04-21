@@ -11,11 +11,11 @@ export const Modal = ({
     gastoEditar
 }) => {
 
-    const [mensaje, setMensaje] = useState('');
-
-    const [nombre, setNombre] = useState('');
-    const [cantidad, setCantidad] = useState('');
-    const [categoria, setCategoria] = useState('');
+    const [mensaje, setMensaje] = useState("");
+    const [nombre, setNombre] = useState("");
+    const [cantidad, setCantidad] = useState("");
+    const [categoria, setCategoria] = useState("");
+    const [id, setId] = useState("");
 
     useEffect(() => {
         if (Object.keys(gastoEditar).length > 0) {
@@ -38,11 +38,11 @@ export const Modal = ({
     const handleSubmit = (e) =>{
         e.preventDefault();
 
-        if ([ nombre, cantidad, categoria].includes('')) {
+        if ([ nombre, cantidad, categoria].includes("")) {
             setMensaje("Todos los campos son obligatorios");
 
             setTimeout(() => {
-                setMensaje('');
+                setMensaje("");
             }, 2000); // Este setTimeout es para quitar o ocultar el mensaje despues de un determinado tiempo
             return;
         }
@@ -65,7 +65,7 @@ export const Modal = ({
             className={`formulario ${animarModal ? "animar" : "cerrar"}`}
             > 
             {/* En la className anterior se puede ver como tratar clases css de manera dinamica en react */}
-                <legend>Nuevo Gasto</legend>
+                <legend>{gastoEditar.nombre ? "Editar Gasto" : "Nuevo Gasto"}</legend>
                 {mensaje && <Mensaje tipo="error">{mensaje}</Mensaje>}
                 <div className="campo">
                     <label htmlFor="nombre">Nombre Gastos</label>
@@ -112,7 +112,7 @@ export const Modal = ({
                 </div>
                 <input 
                     type="submit"
-                    value="Añadir Gasto"
+                    value={ gastoEditar.nombre ? "Guardar Cambios" : "Añadir Gasto"}
                 />
             </form>
         </div>
