@@ -38,11 +38,22 @@ export const App = () => {
   }
 
   const guardarGasto = (gasto) => {
-    gasto.id = generarID(); // Aqui agregamos al objeto el id que se genera
-    gasto.fecha = Date.now(); // Aqui agregamos la fecha al objeto
-    setGastos([...gastos, gasto]); // Aqui se actualiza el state de gastos, recibiendo lo que viene del componente modal.jsx "gasto"
-
-    setAnimarModal(false); // Lo mismo del anterior(setTimeout ubicado en guardarGasto)
+    if (gasto.id) {
+      // Actualizar
+      const gastosActualizados = gastos.map( gastoState => gastoState.id === gasto.id ? 
+        gasto : gastoState ); // Lo que hace esta funcion es recorrer el array de gastos existentes y ubicar por el id el gasto a actualizar, cuando lo encuentra se lo pasa al parametro gasto y se actuzaliza, los demas retornan igual a como llegaron para no perderlos
+        // 1 Original
+        // 2 Modificado (gasto)
+        // 3 Original
+        setGastos(gastosActualizados); // Se pasa el arreglo actualizado
+    } else {
+      // Nuevo Gasto
+      gasto.id = generarID(); // Aqui agregamos al objeto el id que se genera
+      gasto.fecha = Date.now(); // Aqui agregamos la fecha al objeto
+      setGastos([...gastos, gasto]); // Aqui se actualiza el state de gastos, recibiendo lo que viene del componente modal.jsx "gasto"
+    }
+    
+    setAnimarModal(false); // Lo mismo del anterior(setTimeout ubicado en handleNuevoGasto)
 
         setTimeout(() => {
             setModal(false); // Se recibe para volver a configurar la vista del setModal            

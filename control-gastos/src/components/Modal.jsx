@@ -15,6 +15,7 @@ export const Modal = ({
     const [nombre, setNombre] = useState("");
     const [cantidad, setCantidad] = useState("");
     const [categoria, setCategoria] = useState("");
+    const [fecha, setFecha] = useState("");
     const [id, setId] = useState("");
 
     useEffect(() => {
@@ -22,6 +23,8 @@ export const Modal = ({
             setNombre(gastoEditar.nombre)
             setCantidad(gastoEditar.cantidad)
             setCategoria(gastoEditar.categoria)
+            setId(gastoEditar.id)
+            setFecha(gastoEditar.fecha)
         }
     }, []); // Este useEffect se crea para que el componente se monte cuando este listo
     
@@ -47,7 +50,16 @@ export const Modal = ({
             return;
         }
 
-        guardarGasto({nombre, cantidad, categoria}); // Aqui se pasan al App.jsx los datos del formulario
+        if (cantidad <= 0) {
+            setMensaje("La cantidad ingresada no es valida");
+            
+            setTimeout(() => {
+                setMensaje("");
+            }, 2000);
+            return;
+        }
+
+        guardarGasto({nombre, cantidad, categoria, id, fecha}); // Aqui se pasan al App.jsx los datos del formulario
     }
 
   return (
