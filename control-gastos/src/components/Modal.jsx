@@ -8,7 +8,8 @@ export const Modal = ({
     animarModal, 
     setAnimarModal, 
     guardarGasto,
-    gastoEditar
+    gastoEditar,
+    setGastoEditar
 }) => {
 
     const [mensaje, setMensaje] = useState("");
@@ -32,7 +33,7 @@ export const Modal = ({
     const ocultarModal = () => {
 
         setAnimarModal(false); // Lo mismo del anterior
-
+        setGastoEditar({}); // Se vacia el objeto para que funcione bien el programa
         setTimeout(() => {
             setModal(false); // Se recibe para volver a configurar la vista del setModal            
         }, 780);

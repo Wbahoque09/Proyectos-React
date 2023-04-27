@@ -103,6 +103,7 @@ export const App = () => {
             setAnimarModal={setAnimarModal} // Lo mismo del anterior
             guardarGasto={guardarGasto} // Se pasa para "traer" los datos obtenidos en el formulario del modal
             gastoEditar={gastoEditar} // Se pasa para que el modal sepa que gasto esta seleccionado
+            setGastoEditar={setGastoEditar} // Se pasa para que cuando se oculte el modal, vaciar el objeto
           />
         }
       </div>
