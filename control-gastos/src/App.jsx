@@ -59,7 +59,13 @@ export const App = () => {
             setModal(false); // Se recibe para volver a configurar la vista del setModal            
         }, 780);
 
-  } // Este es el "ejemplo" de como el padre le pide al componente hijo informacion
+  } // Este es el "ejemplo" de como el padre le pide al componente hijo informacion, aqui se crea esta funcion para editar gastos
+
+  const eliminarGasto = (id) => {
+    const gastosActualizados = gastos.filter(gasto => gasto.id !== id);
+
+    setGastos(gastosActualizados); // Se pasa el arreglo actualizado
+  }
 
   return (
     <>
@@ -75,8 +81,9 @@ export const App = () => {
           <>
           <main>
             <ListadoGastos
-              gastos={gastos}
-              setGastoEditar={setGastoEditar}
+              gastos={gastos} // Se pasa para verificar si hay gastos y active la siguiente vista de pantalla
+              setGastoEditar={setGastoEditar} // Se pasa para ir actualizando el state de gasto
+              eliminarGasto={eliminarGasto} // Se pasa para eliminart gasto
             />
           </main>
             <div className="nuevo-gasto">

@@ -17,7 +17,7 @@ import IconoOcio from '../assets/img/icono_ocio.svg';
 import IconoSalud from '../assets/img/icono_salud.svg';
 import IconoSuscripciones from '../assets/img/icono_suscripciones.svg';
 
-export const Gasto = ({gasto, setGastoEditar}) => {
+export const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
 
   const diccionariosIconos = {
     ahorro: IconoAhorro,
@@ -48,10 +48,14 @@ export const Gasto = ({gasto, setGastoEditar}) => {
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => console.log("eliminando...") }>
+      <SwipeAction 
+        onClick={() => eliminarGasto(id) }
+        destructive={true}
+      > 
         Eliminar
       </SwipeAction>
     </TrailingActions>
+    // En el onclick del SwipeAction se le pasa la funcion via prop que viene del app.jsx y se le manda el id del gasto a eliminar
   )
 
   return (
