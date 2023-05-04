@@ -38,6 +38,11 @@ export const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
     });
   }
 
+  const eliminar = () => {
+    eliminarGasto(id);
+    setGastoEditar({});
+  }
+
   const leadingActions = () => (
     <LeadingActions>
       <SwipeAction onClick={() => setGastoEditar(gasto)}>
@@ -49,7 +54,7 @@ export const Gasto = ({gasto, setGastoEditar, eliminarGasto}) => {
   const trailingActions = () => (
     <TrailingActions>
       <SwipeAction 
-        onClick={() => eliminarGasto(id) }
+        onClick={eliminar} // Cree esta funcion para poder pasar el id a eliminar y para vaciar el state de setGastoEditar.
         destructive={true}
       > 
         Eliminar
