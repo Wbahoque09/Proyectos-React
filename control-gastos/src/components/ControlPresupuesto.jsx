@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CircularProgressbar } from 'react-circular-progressbar';
+import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import '../css/styles.css';
 
 export const ControlPresupuesto = ({presupuesto, gastos}) => {
@@ -28,9 +28,9 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
     
 
     const formatearCantidad = (cantidad) => {
-        return Number(cantidad).toLocaleString('es-CO', {
-            style: 'currency',
-            currency: 'COP'
+        return Number(cantidad).toLocaleString("es-CO", {
+            style: "currency",
+            currency: "COP"
         });
     }
 
@@ -41,6 +41,10 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
             <div className="contenedor-presupuesto contenedor sombra dos-columnas">
                 <div>
                     <CircularProgressbar
+                        styles={buildStyles({
+                            pathColor: "#3B82F6",
+                            trailColor: "#F5F5F5",
+                        })}
                         value={porcentaje}
                     
                     />
