@@ -4,6 +4,7 @@ import '../css/styles.css';
 
 export const ControlPresupuesto = ({presupuesto, gastos}) => {
 
+    const [porcentaje, setPorcentaje] = useState(0);
     const [disponible, setDisponible] = useState(0);
     const [gastado, setGastado] = useState(0);
 
@@ -12,9 +13,17 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
         
         const totalDisponible = presupuesto - totalGastado;
 
+        // Calcular el porcentaje gastado
+        const nuevoPorcentaje = ((( presupuesto - totalDisponible ) / presupuesto ) * 100).toFixed(2);
+
         setDisponible(totalDisponible);
 
         setGastado(totalGastado);
+
+        setTimeout(() => {
+            setPorcentaje(nuevoPorcentaje);
+        }, 1000);
+
     }, [gastos]) // Este useEffect se hace para que se ejecute cada vez que haya un gasto
     
 
@@ -32,7 +41,7 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
             <div className="contenedor-presupuesto contenedor sombra dos-columnas">
                 <div>
                     <CircularProgressbar
-                        value={0}
+                        value={porcentaje}
                     
                     />
                 </div>
