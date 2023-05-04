@@ -10,7 +10,9 @@ import IconoImg from './assets/img/nuevo-gasto.svg';
 
 export const App = () => {
   
-  const [presupuesto, setPresupuesto] = useState(0); // Este useState es creado para controlar el presupuesto
+  const [presupuesto, setPresupuesto] = useState(
+    localStorage.getItem("presupuesto") ?? 0
+  ); // Este useState es creado para controlar el presupuesto
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false); // Este useState sirve para para la validacion del presupuesto
   const [modal, setModal] = useState(false); // Se utiliza este State para controlar la visualizacion de la ventana modal
   const [animarModal, setAnimarModal] = useState(false); // Este useState se utiliza para controlar la visualizacion de la animacion (css)
@@ -26,6 +28,11 @@ export const App = () => {
       }, 870); // Este setTimeout se crea para tratar animaciones desde el css
     }
   }, [gastoEditar]) // Este useEffect se crea para llamar o activar al modal cada vez que se vaya a editar un gasto
+
+  useEffect(() => {
+    localStorage.setItem("presupuesto", presupuesto ?? 0);
+  }, [presupuesto]) // Este useEffect se crea para 
+  
   
 
   const handleNuevoGasto = () => {
