@@ -5,18 +5,17 @@ import { Modal } from './components/Modal';
 import { generarID } from '../src/helpers';
 import IconoImg from './assets/img/nuevo-gasto.svg';
 
-
-
-
 export const App = () => {
   
   const [presupuesto, setPresupuesto] = useState(
     localStorage.getItem("presupuesto") ?? 0
-  ); // Este useState es creado para controlar el presupuesto
+  ); // Este useState es creado para controlar el presupuesto y traer lo que hay almacenado en el localstorage
   const [isValidPresupuesto, setIsValidPresupuesto] = useState(false); // Este useState sirve para para la validacion del presupuesto
   const [modal, setModal] = useState(false); // Se utiliza este State para controlar la visualizacion de la ventana modal
   const [animarModal, setAnimarModal] = useState(false); // Este useState se utiliza para controlar la visualizacion de la animacion (css)
-  const [gastos, setGastos] = useState([]); // Este useState se usa para guardar el estado de los datos del formulario por medio de la funcion "guardarGasto"
+  const [gastos, setGastos] = useState(
+    localStorage.getItem("gastos") ? JSON.parse(localStorage.getItem("gastos")) : []
+  ); // Este useState se usa para guardar el estado de los datos del formulario por medio de la funcion "guardarGasto" y trae los items de gastos guardados en localstorage
   const [gastoEditar, setGastoEditar] = useState({}); // Este useState se crea para pasar al modal y revisar si hay que editar
 
   useEffect(() => {
@@ -30,11 +29,20 @@ export const App = () => {
   }, [gastoEditar]) // Este useEffect se crea para llamar o activar al modal cada vez que se vaya a editar un gasto
 
   useEffect(() => {
-    localStorage.setItem("presupuesto", presupuesto ?? 0);
-  }, [presupuesto]) // Este useEffect se crea para 
-  
-  
+    Number(localStorage.setItem("presupuesto", presupuesto) ?? 0);
+  }, [presupuesto]) // Este useEffect se crea para para escuchar los cambios en el presupuesto
 
+  useEffect(() => {
+    localStorage.setItem("gastos", JSON.stringify(gastos) ?? [] );
+  }, [gastos]) // Este useEffect se crea para guardar los gastos en localStorage
+  
+  
+  useEffect(() => {
+    if (presupuesto > 0) {
+      setIsValidPresupuesto(true);
+    }
+  }, []) // Este useEffect se crea para comprobar si hay presupuesto valido 
+  
   const handleNuevoGasto = () => {
     setModal(true); // Aqui se habilita la vista del modal
     setGastoEditar({}); // Esto se hace para evitar que el gasto a editar siga manteniendose aun despues de haberse cerrado
