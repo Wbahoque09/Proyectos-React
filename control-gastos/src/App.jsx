@@ -19,6 +19,7 @@ export const App = () => {
   ); // Este useState se usa para guardar el estado de los datos del formulario por medio de la funcion "guardarGasto" y trae los items de gastos guardados en localstorage
   const [gastoEditar, setGastoEditar] = useState({}); // Este useState se crea para pasar al modal y revisar si hay que editar
   const [filtro, setFiltro] = useState(''); // Este useState se crea para tener en el estado el filtro a buscar
+  const [filtroGastos, setFiltroGastos] = useState([]); // Este useState se crea para mantener los resultados de los filtros
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
@@ -46,8 +47,9 @@ export const App = () => {
   
   useEffect(() => {
     // Actualizar gastos por categoria
-    
-  }, [filtro]) // Este useEffect se crea para verificar si hay cmabio en el select de la busqueda
+    const gastosFiltrados = gastos.filter( gasto => gasto.categoria === filtro ); // Aca comparamos la categoria del gasto con el filtro escogido 
+    setFiltroGastos(gastosFiltrados); // Se manda para seguir manteniendo la eleccion obtenida
+  }, [filtro]) // Este useEffect se crea para verificar si hay cambio en el select de la busqueda
   
   
   const handleNuevoGasto = () => {
