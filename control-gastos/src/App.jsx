@@ -111,7 +111,9 @@ export const App = () => {
             <ListadoGastos
               gastos={gastos} // Se pasa para verificar si hay gastos y active la siguiente vista de pantalla
               setGastoEditar={setGastoEditar} // Se pasa para ir actualizando el state de gasto
-              eliminarGasto={eliminarGasto} // Se pasa para eliminart gasto
+              eliminarGasto={eliminarGasto} // Se pasa para eliminar gasto
+              filtro={filtro} // Se pasa para controlar la vista de filtrado
+              filtroGastos={filtroGastos} // Se pasa para mostrar el filtro seleccionado
             />
           </main>
             <div className="nuevo-gasto">
