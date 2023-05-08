@@ -4,6 +4,7 @@ import { ListadoGastos } from './components/ListadoGastos';
 import { Modal } from './components/Modal';
 import { generarID } from '../src/helpers';
 import IconoImg from './assets/img/nuevo-gasto.svg';
+import { Filtros } from './components/Filtros';
 
 export const App = () => {
   
@@ -17,6 +18,7 @@ export const App = () => {
     localStorage.getItem("gastos") ? JSON.parse(localStorage.getItem("gastos")) : []
   ); // Este useState se usa para guardar el estado de los datos del formulario por medio de la funcion "guardarGasto" y trae los items de gastos guardados en localstorage
   const [gastoEditar, setGastoEditar] = useState({}); // Este useState se crea para pasar al modal y revisar si hay que editar
+  const [filtro, setFiltro] = useState(''); // Este useState se crea para tener en el estado el filtro a buscar
 
   useEffect(() => {
     if (Object.keys(gastoEditar).length > 0) {
@@ -36,12 +38,17 @@ export const App = () => {
     localStorage.setItem("gastos", JSON.stringify(gastos) ?? [] );
   }, [gastos]) // Este useEffect se crea para guardar los gastos en localStorage
   
-  
   useEffect(() => {
     if (presupuesto > 0) {
       setIsValidPresupuesto(true);
     }
-  }, []) // Este useEffect se crea para comprobar si hay presupuesto valido 
+  }, []) // Este useEffect se crea para comprobar si hay presupuesto valido
+  
+  useEffect(() => {
+    // Actualizar gastos por categoria
+    
+  }, [filtro]) // Este useEffect se crea para verificar si hay cmabio en el select de la busqueda
+  
   
   const handleNuevoGasto = () => {
     setModal(true); // Aqui se habilita la vista del modal
@@ -95,6 +102,10 @@ export const App = () => {
         {isValidPresupuesto && (
           <>
           <main>
+            <Filtros
+              filtro={filtro} // Se pasa para extraer la busqueda seleccionada
+              setFiltro={setFiltro} // Se pasa para cambiar la busqueda
+            />
             <ListadoGastos
               gastos={gastos} // Se pasa para verificar si hay gastos y active la siguiente vista de pantalla
               setGastoEditar={setGastoEditar} // Se pasa para ir actualizando el state de gasto
