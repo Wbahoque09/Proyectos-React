@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import '../css/styles.css';
 
-export const ControlPresupuesto = ({presupuesto, gastos}) => {
+export const ControlPresupuesto = ({
+    presupuesto,
+    setPresupuesto,
+    gastos,
+    setGastos,
+    setIsValidPresupuesto,
+}) => {
 
     const [porcentaje, setPorcentaje] = useState(0);
     const [disponible, setDisponible] = useState(0);
@@ -34,6 +40,15 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
         });
     }
 
+    const handleResetApp = () => {
+        const resultado = confirm("¿Seguro que deseas reiniciar la app?");
+
+        if (resultado) {
+            setPresupuesto(0); // Se pasa a 0 para actualizar el state y todo regrese como al principio
+            setGastos([]); // Se pasa un array vacio [] para actualizar el state y todo regrese como al principio
+            setIsValidPresupuesto(false); // Se pone en false para que rediriga a la ventana donde se coloca el presupuesto.
+        }
+    }
     // console.log(formatearCantidad()); No sirve :V
 
     return (
@@ -52,6 +67,13 @@ export const ControlPresupuesto = ({presupuesto, gastos}) => {
                     />
                 </div>
                 <div className="contenido-presupuesto">
+                    <button
+                        className="reset-app"
+                        type="button"
+                        onClick={handleResetApp}
+                    >
+                        Resetear App
+                    </button>
                     <p>
                         <span>Presupuesto: </span> {formatearCantidad(presupuesto)}
                     </p>

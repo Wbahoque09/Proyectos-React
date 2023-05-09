@@ -11,7 +11,7 @@ export const App = () => {
   const [presupuesto, setPresupuesto] = useState(
     localStorage.getItem("presupuesto") ?? 0
   ); // Este useState es creado para controlar el presupuesto y traer lo que hay almacenado en el localstorage
-  const [isValidPresupuesto, setIsValidPresupuesto] = useState(false); // Este useState sirve para para la validacion del presupuesto
+  const [isValidPresupuesto, setIsValidPresupuesto] = useState(false); // Este useState sirve para la validacion del presupuesto
   const [modal, setModal] = useState(false); // Se utiliza este State para controlar la visualizacion de la ventana modal
   const [animarModal, setAnimarModal] = useState(false); // Este useState se utiliza para controlar la visualizacion de la animacion (css)
   const [gastos, setGastos] = useState(
@@ -70,6 +70,7 @@ export const App = () => {
         // 2 Modificado (gasto)
         // 3 Original
         setGastos(gastosActualizados); // Se pasa el arreglo actualizado
+        setGastoEditar({}); // Se vuelve a actualizar el gasto a editar para que no quede guardado en el state
     } else {
       // Nuevo Gasto
       gasto.id = generarID(); // Aqui agregamos al objeto el id que se genera
@@ -100,14 +101,18 @@ export const App = () => {
           setPresupuesto={setPresupuesto}
           isValidPresupuesto={isValidPresupuesto}
           setIsValidPresupuesto={setIsValidPresupuesto}
+          setGastos={setGastos} // Se pasan la funcion actulizadora de gastos para borrar los datos del localstorage 
         />
         {isValidPresupuesto && (
           <>
           <main>
-            <Filtros
-              filtro={filtro} // Se pasa para extraer la busqueda seleccionada
-              setFiltro={setFiltro} // Se pasa para cambiar la busqueda
-            />
+            {gastos.length ? (
+              <Filtros
+                filtro={filtro} // Se pasa para extraer la busqueda seleccionada
+                setFiltro={setFiltro} // Se pasa para cambiar la busqueda
+              />
+            ) : 
+            ( "" )}
             <ListadoGastos
               gastos={gastos} // Se pasa para verificar si hay gastos y active la siguiente vista de pantalla
               setGastoEditar={setGastoEditar} // Se pasa para ir actualizando el state de gasto

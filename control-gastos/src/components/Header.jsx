@@ -6,7 +6,8 @@ export const Header = ({
     presupuesto, 
     setPresupuesto, 
     isValidPresupuesto, 
-    setIsValidPresupuesto 
+    setIsValidPresupuesto,
+    setGastos,
 }) => {
     return (
         <>
@@ -15,7 +16,10 @@ export const Header = ({
                 {isValidPresupuesto ? (
                     <ControlPresupuesto 
                         presupuesto={presupuesto}
+                        setPresupuesto={setPresupuesto} // Se pasa para borrar los datos del presupuesto del localstorage 
                         gastos={gastos} // Se siguen pasando por aqui para los calculos
+                        setGastos={setGastos} // Se pasa para borrar los datos de los gastos del localstorage
+                        setIsValidPresupuesto={setIsValidPresupuesto} // Se pasa para actualizar la ventana que muestra si hay presupuesto
                     />
                 ): (
                     <NuevoPresupuesto
