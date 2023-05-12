@@ -5,3 +5,32 @@
 body {
   background-color: #0D2235;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Styled components
+  Def: Se crean en el mismo componente (CSS en JS), y se crean la sintaxis JS.
+  ventajas: se reutiliza codigo CSS. (?)
+  Sintaxis: 
+    const Heading= styled.h1`
+      font-size: 2em;
+      text-transform: uppercase;
+    `;
+
+    Etiqueta html:
+    <Heading>Nuestros Productos</Heading>
+ */
