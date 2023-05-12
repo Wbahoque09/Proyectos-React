@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styled from '@emotion/styled'; // Para utlizar styled component se empieza con esta importacion
+import { Formulario } from './components/formulario';
 import imagenCripto from './assets/img/imagen-criptos.png';
+
 
 const Contenedor = styled.div`
   max-width: 900px;
@@ -53,6 +55,8 @@ export const App = () => {
         />
         <div>
           <Heading>Cotiza Criptomonedas al instante</Heading>
+
+          <Formulario />
         </div>
         
       </Contenedor>
