@@ -1,10 +1,17 @@
 
+import styled from '@emotion/styled';
 
-export const useSelectMonedas = () => {
+const Label = styled.label`
+    color: #FFF;
+`
+
+export const useSelectMonedas = (label) => {
     
-    const SelectMonedas = () => {
-        console.log("Desde Select");
-    }
+    const SelectMonedas = () => (
+        <>
+            <Label htmlFor="Moneda">{label}</Label>
+        </>
+    )
 
     return [ SelectMonedas ] // Aqui retornamos en un array para poder usarlo en otro lado de la app.
 }
