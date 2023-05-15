@@ -13,6 +13,7 @@ const InputSubmit = styled.input`
     text-transform: uppercase;
     font-size: 20px;
     border-radius: 5px;
+    margin-top: 30px;
     transition: background-color .3s ease; /* Investigar mas sobre este efecto */
 
     &:hover{

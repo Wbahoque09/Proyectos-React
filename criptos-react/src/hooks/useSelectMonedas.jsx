@@ -4,14 +4,27 @@ import styled from '@emotion/styled';
 // eslint-disable-next-line react-refresh/only-export-components
 const Label = styled.label`
     color: #FFF;
+    display: block;
+    font-family: "nunito", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 15px 0;
 `
+// eslint-disable-next-line react-refresh/only-export-components
+const Select = styled.select`
+    width: 100%;
+    font-size: 18px;
+    padding: 14px;
+    border-radius: 10px;
+`
+
 // Label y opciones se reciben de Formulario .jsx
 export const useSelectMonedas = (label, opciones) => {
     
     const SelectMonedas = () => (
         <>
             <Label htmlFor="Moneda">{label}</Label>
-            <select name="Moneda" id="">
+            <Select name="Moneda" id="">
                 <option value="">Seleccione</option>
                 {opciones.map( opcion => (
                     <option
@@ -19,7 +32,7 @@ export const useSelectMonedas = (label, opciones) => {
                         value={opcion.id}
                     >{opcion.nombre}</option>
                 ))}
-            </select>
+            </Select>
         </>
     )
 
