@@ -1,15 +1,25 @@
 
 import styled from '@emotion/styled';
 
+// eslint-disable-next-line react-refresh/only-export-components
 const Label = styled.label`
     color: #FFF;
 `
-
-export const useSelectMonedas = (label) => {
+// Label y opciones se reciben de Formulario .jsx
+export const useSelectMonedas = (label, opciones) => {
     
     const SelectMonedas = () => (
         <>
             <Label htmlFor="Moneda">{label}</Label>
+            <select name="Moneda" id="">
+                <option value="">Seleccione</option>
+                {opciones.map( opcion => (
+                    <option
+                        key={opcion.id}
+                        value={opcion.id}
+                    >{opcion.nombre}</option>
+                ))}
+            </select>
         </>
     )
 
