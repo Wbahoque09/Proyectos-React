@@ -1,4 +1,6 @@
+import { useSelectMonedas } from '../hooks/useSelectMonedas';
 import styled from '@emotion/styled';
+
 
 const InputSubmit = styled.input`
     background-color: #9497FF;
@@ -19,6 +21,11 @@ const InputSubmit = styled.input`
 `
 
 export const Formulario = () => {
+
+    const [ SelectMonedas ] = useSelectMonedas(); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo. 
+
+    SelectMonedas(); // Aqui se llamo a la funcion
+
     return (
         <>
             <form>
