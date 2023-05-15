@@ -1,5 +1,6 @@
-
+import { useState } from 'react';
 import styled from '@emotion/styled';
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 const Label = styled.label`
@@ -20,11 +21,16 @@ const Select = styled.select`
 
 // Label y opciones se reciben de Formulario .jsx
 export const useSelectMonedas = (label, opciones) => {
+
+    const [state, setState] = useState(""); // Declaracion del state de forma general porque se va a reutilizar en otros compenentes 
     
     const SelectMonedas = () => (
         <>
-            <Label htmlFor="Moneda">{label}</Label>
-            <Select name="Moneda" id="">
+            <Label>{label}</Label>
+            <Select
+                value={state}
+                onChange={ (e) => setState( e.target.value ) }
+            >
                 <option value="">Seleccione</option>
                 {opciones.map( opcion => (
                     <option
@@ -36,7 +42,7 @@ export const useSelectMonedas = (label, opciones) => {
         </>
     )
 
-    return [ SelectMonedas ] // Aqui retornamos en un array para poder usarlo en otro lado de la app.
+    return [ state, SelectMonedas ] // Aqui retornamos en un array para poder usarlo en otro lado de la app.
 }
 
 

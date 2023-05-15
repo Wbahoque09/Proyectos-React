@@ -24,7 +24,7 @@ const InputSubmit = styled.input`
 
 export const Formulario = () => {
 
-    const [ SelectMonedas ] = useSelectMonedas("Elige tu moneda", monedas); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo.
+    const [ moneda, SelectMonedas ] = useSelectMonedas("Elige tu moneda", monedas); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo.
     // las monedas se traen por el archivos monedas
 
     // SelectMonedas(); // Aqui se llamo a la funcion
@@ -34,7 +34,7 @@ export const Formulario = () => {
             <form>
                 {/* Se declara el SelectMoneda como componente, investigar mas... */}
                 <SelectMonedas /> 
-
+                
                 <InputSubmit type="submit" value={"Cotizar"} />
             </form>
         </>
