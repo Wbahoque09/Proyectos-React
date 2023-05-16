@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { monedas } from '../data/monedas';
 import { useSelectMonedas } from '../hooks/useSelectMonedas';
 import styled from '@emotion/styled';
@@ -25,6 +25,8 @@ const InputSubmit = styled.input`
 
 export const Formulario = () => {
 
+    const [criptos, setCriptos] = useState([]);
+
     const [ moneda, SelectMonedas ] = useSelectMonedas("Elige tu moneda", monedas); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo.
     // las monedas se traen por el archivos monedas
 
@@ -36,7 +38,17 @@ export const Formulario = () => {
             const url = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD"
             const respuesta = await fetch(url); // Con el await nos aseguramos de que se la anterior tarea haya finalizado
             const resultado = await respuesta.json() // Aqui convertimos la respuesta en JSON
-            console.log(resultado.Data);
+            // console.log(resultado.Data);
+
+            const arrayCriptos = resultado.Data.map( (cripto) => { // Se hace un .map al resultado para acceder a los datos que mas nos interesan
+                const objeto = { // Se crea un objeto para guardar la informacion y utilizarla mas adelante
+                    id: cripto.CoinInfo.Name,
+                    name: cripto.CoinInfo.FullName,
+                }
+                return objeto
+            })
+
+            setCriptos(arrayCriptos); // Se llena el state de criptos
 
         }
         
