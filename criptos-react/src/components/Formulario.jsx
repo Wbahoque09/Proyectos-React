@@ -29,6 +29,7 @@ export const Formulario = () => {
 
     const [ moneda, SelectMonedas ] = useSelectMonedas("Elige tu moneda", monedas); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo.
     // las monedas se traen por el archivos monedas
+    const [ criptomoneda, SelectCriptomoneda ] = useSelectMonedas("Elige tu Criptomoneda", criptos); // Se crea otro label y select utilizando el customHook.
 
     // SelectMonedas(); // Aqui se llamo a la funcion
 
@@ -43,9 +44,9 @@ export const Formulario = () => {
             const arrayCriptos = resultado.Data.map( (cripto) => { // Se hace un .map al resultado para acceder a los datos que mas nos interesan
                 const objeto = { // Se crea un objeto para guardar la informacion y utilizarla mas adelante
                     id: cripto.CoinInfo.Name,
-                    name: cripto.CoinInfo.FullName,
+                    nombre: cripto.CoinInfo.FullName, // Se pasa esa propiedad con el nombre por como se recibe en el customHook
                 }
-                return objeto
+                return objeto;
             })
 
             setCriptos(arrayCriptos); // Se llena el state de criptos
@@ -57,12 +58,21 @@ export const Formulario = () => {
 
     }, []) // Este useEffect se crea para hacer la consulta de las criptomondeas y se ejecuta una sola vez.
     
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        console.log("Enviando Formulario");
+    }
 
     return (
         <>
-            <form>
+            <form
+                onSubmit={handleSubmit}
+            >
                 {/* Se declara el SelectMoneda como componente, investigar mas... */}
-                <SelectMonedas /> 
+                <SelectMonedas />
+
+                <SelectCriptomoneda />
                 
                 <InputSubmit type="submit" value={"Cotizar"} />
             </form>
