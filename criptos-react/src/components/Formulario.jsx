@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { monedas } from '../data/monedas';
+import { Error } from './Error';
 import { useSelectMonedas } from '../hooks/useSelectMonedas';
 import styled from '@emotion/styled';
 
@@ -26,6 +27,7 @@ const InputSubmit = styled.input`
 export const Formulario = () => {
 
     const [criptos, setCriptos] = useState([]);
+    const [error, setError] = useState(false);
 
     const [ moneda, SelectMonedas ] = useSelectMonedas("Elige tu moneda", monedas); // Aqui ponemos el mismo nombre como se declaro para llamar a la funcion, Nota se retorna por indice del arreglo.
     // las monedas se traen por el archivos monedas
@@ -61,13 +63,22 @@ export const Formulario = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        console.log("Enviando Formulario");
+        if ([moneda,criptomoneda].includes("")) { // Esta condicion es para validacion (No esten vacios) de los campos en el formulario 
+            
+            setError(true);
+
+            return;
+        }
+
+        setError(false); // Se pasa a false el state para que no muestre el mensaje de error
     }
 
     return (
         <>
+            {/* Se pasa el state de error para mostrar el componente que contiene un mensaje, el mensaje se pasa como children */}
+            {error && <Error>Todos los campos son obligatorios</Error>} 
             <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit} // Se crea esta funcion para manejar el envio de datos por el formulario (Boton Submit)
             >
                 {/* Se declara el SelectMoneda como componente, investigar mas... */}
                 <SelectMonedas />
