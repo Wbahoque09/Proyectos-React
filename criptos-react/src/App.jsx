@@ -46,12 +46,26 @@ const Heading = styled.h1`
 export const App = () => {
 
   const [monedas, setMonedas] = useState({}); // Se crea este state para tener informacion sobre la eleccion del usuario con las monedas
+  const [resultado, setResultado] = useState({}); // Se crea este state para almacenar los datos de la consulta Fecht API
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) { // Metodo para comprobrar si hay algo en el objeto
-      console.log(monedas);
+      
+      const cotizarCripto = async () => { // funcion asincronica para hacer peticion a la API
+        const { moneda, criptomoneda } = monedas;
+        const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
+        console.log(url);
+
+        const respuesta = await fetch(url);
+        const resultado = await respuesta.json();
+
+        setResultado(resultado.DISPLAY[criptomoneda][moneda]); // Se pasa los datos a guardar del fecht, se accede por arrays para hacer la consulta dinamica
+
+      }
+
+      cotizarCripto(); // Llamado o invocacion de la funcion asincrona
     }
-  }, [monedas]) // Este effect se "disparara" cuando monedas tenga algo
+  }, [monedas]) // Este effect se "disparara" cuando monedas tenga algo y nos servira para realizar otra consulta fecht API
   
 
   return (
