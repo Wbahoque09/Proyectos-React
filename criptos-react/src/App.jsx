@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from '@emotion/styled'; // Para utlizar styled component se empieza con esta importacion
-import { Formulario } from './components/formulario';
+import { Formulario } from './components/Formulario';
 import imagenCripto from './assets/img/imagen-criptos.png';
 
 
@@ -45,6 +45,15 @@ const Heading = styled.h1`
 
 export const App = () => {
 
+  const [monedas, setMonedas] = useState({}); // Se crea este state para tener informacion sobre la eleccion del usuario con las monedas
+
+  useEffect(() => {
+    if (Object.keys(monedas).length > 0) { // Metodo para comprobrar si hay algo en el objeto
+      console.log(monedas);
+    }
+  }, [monedas]) // Este effect se "disparara" cuando monedas tenga algo
+  
+
   return (
     <>
       <Contenedor>
@@ -56,7 +65,9 @@ export const App = () => {
         <div>
           <Heading>Cotiza Criptomonedas al instante</Heading>
 
-          <Formulario />
+          <Formulario
+            setMonedas={setMonedas} // Se pasa via props el modificador del state para recibir la informacion de las monedas seleccionadas
+          />
         </div>
         
       </Contenedor>

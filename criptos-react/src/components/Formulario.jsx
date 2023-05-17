@@ -24,7 +24,8 @@ const InputSubmit = styled.input`
     }
 `
 
-export const Formulario = () => {
+// eslint-disable-next-line react/prop-types
+export const Formulario = ({setMonedas}) => {
 
     const [criptos, setCriptos] = useState([]);
     const [error, setError] = useState(false);
@@ -71,6 +72,10 @@ export const Formulario = () => {
         }
 
         setError(false); // Se pasa a false el state para que no muestre el mensaje de error
+        setMonedas({ // Se pasa la informacion al App.jsx por medio de la funcion actualizadora, se le mandan la informacion del state del customHook.
+            moneda, 
+            criptomoneda
+        })
     }
 
     return (
