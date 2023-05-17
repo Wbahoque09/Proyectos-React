@@ -14,8 +14,10 @@ const Texto = styled.div`
 // eslint-disable-next-line react/prop-types
 export const Error = ({children}) => {
     return (
-        <Texto>
-            {children}
-        </Texto>
+        <>
+            <Texto>
+                {children}
+            </Texto>
+        </>
     )
 }                                                   

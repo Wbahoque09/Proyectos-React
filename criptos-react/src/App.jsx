@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import styled from '@emotion/styled'; // Para utlizar styled component se empieza con esta importacion
 import { Formulario } from './components/Formulario';
+import { Resultado } from './components/Resultado';
 import imagenCripto from './assets/img/imagen-criptos.png';
 
 
@@ -52,7 +53,7 @@ export const App = () => {
     if (Object.keys(monedas).length > 0) { // Metodo para comprobrar si hay algo en el objeto
       
       const cotizarCripto = async () => { // funcion asincronica para hacer peticion a la API
-        const { moneda, criptomoneda } = monedas;
+        const { moneda, criptomoneda } = monedas; // Desestructuracion del state de monedas
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
         console.log(url);
 
@@ -82,6 +83,8 @@ export const App = () => {
           <Formulario
             setMonedas={setMonedas} // Se pasa via props el modificador del state para recibir la informacion de las monedas seleccionadas
           />
+          {/* Se hace esta validacion para mostrar el componente de resultado */}
+          {resultado.PRICE && <Resultado resultado={resultado}/>} 
         </div>
         
       </Contenedor>
