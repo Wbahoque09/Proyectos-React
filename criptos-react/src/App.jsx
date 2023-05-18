@@ -3,6 +3,7 @@ import styled from '@emotion/styled'; // Para utlizar styled component se empiez
 import { Formulario } from './components/Formulario';
 import { Resultado } from './components/Resultado';
 import imagenCripto from './assets/img/imagen-criptos.png';
+import { Spinner } from './components/Spinner';
 
 
 const Contenedor = styled.div`
@@ -48,11 +49,14 @@ export const App = () => {
 
   const [monedas, setMonedas] = useState({}); // Se crea este state para tener informacion sobre la eleccion del usuario con las monedas
   const [resultado, setResultado] = useState({}); // Se crea este state para almacenar los datos de la consulta Fecht API
+  const [cargando, setCargando] = useState(false); // Se crea este state para la configuracion del spinner (cargando), para hacer una peticion
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) { // Metodo para comprobrar si hay algo en el objeto
       
       const cotizarCripto = async () => { // funcion asincronica para hacer peticion a la API
+        setCargando(true); // Se pasa a true para mostrar el cargando
+        setResultado({}); // Se vacia el state para cuando hay algo se borre y no demore la ejecucion
         const { moneda, criptomoneda } = monedas; // Desestructuracion del state de monedas
         const url = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${criptomoneda}&tsyms=${moneda}`;
         console.log(url);
@@ -61,6 +65,8 @@ export const App = () => {
         const resultado = await respuesta.json();
 
         setResultado(resultado.DISPLAY[criptomoneda][moneda]); // Se pasa los datos a guardar del fecht, se accede por arrays para hacer la consulta dinamica
+
+        setCargando(false); // Se pasa a false para ocultar el spinner 
 
       }
 
@@ -83,6 +89,10 @@ export const App = () => {
           <Formulario
             setMonedas={setMonedas} // Se pasa via props el modificador del state para recibir la informacion de las monedas seleccionadas
           />
+
+          {/* Validacion para mostar el spinner (cargando) */}
+          {cargando && <Spinner />}
+
           {/* Se hace esta validacion para mostrar el componente de resultado */}
           {resultado.PRICE && <Resultado resultado={resultado}/>} 
         </div>
