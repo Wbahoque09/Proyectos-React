@@ -3,14 +3,13 @@ import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
 
-function App() {
+export const App = () => {
   const [count, setCount] = useState(0);
 
   return (
     <>
-      <h1>CMR REACT - REACT ROUTER DOM</h1>
+      <h1 className="text-6xl font-bold">CMR REACT - REACT ROUTER DOM</h1>
     </>
   )
 }
 
-export default App
