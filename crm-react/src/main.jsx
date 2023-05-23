@@ -4,7 +4,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { NuevoCliente } from './pages/NuevoCliente';
-import { Inicio } from './pages/Inicio';
+import { Inicio, clientesLoader } from './pages/Inicio';
 
 const router = createBrowserRouter([
   {
@@ -13,7 +13,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true, // El index va a mostrar o hacer referencia al path de inicio ("/")
-        element: <Inicio />
+        element: <Inicio />,
+        loader: clientesLoader // Aqui el componente inicio sabe lo que tiene loader
       },
       {
         path: "/clientes/nuevo",
