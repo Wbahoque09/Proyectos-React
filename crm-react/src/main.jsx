@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/Layout';
-import { NuevoCliente } from './pages/NuevoCliente';
+import { NuevoCliente, action as nuevoClienteAction } from './pages/NuevoCliente';
 import { Inicio, clientesLoader } from './pages/Inicio';
 
 const router = createBrowserRouter([
@@ -18,7 +18,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/clientes/nuevo",
-        element: <NuevoCliente />
+        element: <NuevoCliente />,
+        action: nuevoClienteAction // Este action recibe la informacion del formulario y el formulario conocera a donde tiene que mandar la informacion
       }
     ] // En el children se renderizara todo el resto de rutas creadas, y es lo que captura el outlet en el componente Layout
     // El componente Layout es el componente padre y sus hijos estan dentro de children
