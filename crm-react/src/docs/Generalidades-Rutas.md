@@ -9,4 +9,8 @@ useNavigate: es un hook de React Router que proporciona una forma programática 
 Actions & Loaders: Utiliza Loaders para obtener datos de una API o de un objeto (similar a un state)
 Utiliza Actions para procesar la entrada de datos en un Form.
 
+Hooks useLoaderData & useActionData: 
+useLoaderData: Cuando quieras obtener el resultado de un loader
+useActionData: Cuando quieras obtener el resultado de un action
+
  -->
