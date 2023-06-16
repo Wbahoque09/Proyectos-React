@@ -1,6 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
-import {useNavigate, Form} from 'react-router-dom';
+import {useNavigate, Form, useActionData} from 'react-router-dom';
 import { Formulario } from '../components/Formulario';
+import { Error } from '../components/Error';
 
 export const action = async ({request}) => {
     const formData = await request.formData();
@@ -8,13 +9,27 @@ export const action = async ({request}) => {
     // console.log(formData.get("nombre"));
     // console.log([...formData]);
     const datos = Object.fromEntries(formData);
-    console.log(datos);
+    
+    const errores = []
+    // Validacion del formulario
+    if (Object.values(datos).includes("")) {
+        errores.push("Todos los campos son obligatorios");
+    }
+
+    // Retornar datos si hay errores
+    if (Object.keys(errores).length) {
+        return errores;
+    }
+
+
     return { ok: true };
 }
 
 export const NuevoCliente = () => {
 
+    const errores = useActionData();
     const navigate = useNavigate();
+
 
     return (
         <>
@@ -32,6 +47,8 @@ export const NuevoCliente = () => {
             </div>
 
             <div className="bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-8">
+
+                {errores?.length && errores.map( (error, i) => <Error key={i}>{error}</Error> )}
                 <Form
                     method="POST"
                 >
@@ -50,4 +67,11 @@ export const NuevoCliente = () => {
 
 /**
  * 1. Se empieza creando o importando el FORM
+ * 
+ * 
+ * 
+ * 
+ * 
+ * Como usar el children:
+ * 1. Se declara como etiquetas con apertura y cierre y lo que se escriba entre las etiquetas se pasan como children
  */
