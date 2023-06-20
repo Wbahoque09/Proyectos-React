@@ -43,3 +43,5 @@ export const Inicio = () => {
         </>
     )
 }
+
+// Investigar sobre Error Boundaries

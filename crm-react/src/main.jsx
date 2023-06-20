@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { Layout } from './components/Layout';
 import { NuevoCliente, action as nuevoClienteAction } from './pages/NuevoCliente';
 import { Inicio, clientesLoader } from './pages/Inicio';
+import { ErrorPage } from './components/ErrorPage';
 
 const router = createBrowserRouter([
   {
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
       {
         index: true, // El index va a mostrar o hacer referencia al path de inicio ("/")
         element: <Inicio />,
-        loader: clientesLoader // Aqui el componente inicio sabe lo que tiene loader
+        loader: clientesLoader, // Aqui el componente inicio sabe lo que tiene loader
+        errorElement: <ErrorPage /> // Aqui renderizamos una ventana de error
       },
       {
         path: "/clientes/nuevo",
