@@ -5,3 +5,8 @@ export const obtenerClientes = async () => {
     const resultado = await respuesta.json()
     return resultado;
 }
+
+export const agregarCliente = async (datos) => {
+
+    console.log(datos);
+}

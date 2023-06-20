@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 import { useLoaderData } from 'react-router-dom';
 import { Cliente } from '../components/Cliente';
-import { obtenerClientes } from '../data/Clientes';
+import { obtenerClientes } from '../data/clientes';
 
 export const clientesLoader = () => {
     const clientes = obtenerClientes();
