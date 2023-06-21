@@ -6,6 +6,7 @@ import { Layout } from './components/Layout';
 import { NuevoCliente, action as nuevoClienteAction } from './pages/NuevoCliente';
 import { Inicio, clientesLoader } from './pages/Inicio';
 import { ErrorPage } from './components/ErrorPage';
+import { EditarCliente, getUserLoader } from './pages/EditarCliente';
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,11 @@ const router = createBrowserRouter([
         path: "/clientes/nuevo",
         element: <NuevoCliente />,
         action: nuevoClienteAction // Este action recibe la informacion del formulario y el formulario conocera a donde tiene que mandar la informacion
+      },
+      {
+        path: "/clientes/:clienteId/editar", // Este path utiliza un ruteo dinamico (:clienteId)
+        element: <EditarCliente />,
+        loader: getUserLoader,
       }
     ] // En el children se renderizara todo el resto de rutas creadas, y es lo que captura el outlet en el componente Layout
     // El componente Layout es el componente padre y sus hijos estan dentro de children
