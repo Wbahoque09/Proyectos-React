@@ -6,6 +6,13 @@ export const obtenerClientes = async () => {
     return resultado;
 }
 
+// La funcion obtenerCliente es para hacer una peticion (fetch) y obtener un solo cliente para editar
+export const obtenerCliente = async (id) => {
+    const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`);
+    const resultado = await respuesta.json()
+    return resultado;
+}
+
 // La funcion agregarClientes se utiliza para hacer otra peticion 
 export const agregarCliente = async (datos) => {
 
