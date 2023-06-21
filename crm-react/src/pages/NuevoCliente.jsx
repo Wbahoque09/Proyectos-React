@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import {useNavigate, Form, useActionData} from 'react-router-dom';
+import {useNavigate, Form, useActionData, redirect} from 'react-router-dom';
 import { Formulario } from '../components/Formulario';
 import { Error } from '../components/Error';
 import { agregarCliente } from '../data/clientes';
@@ -32,10 +32,10 @@ export const action = async ({request}) => {
         return errores;
     }
 
-    agregarCliente(datos);
+    await agregarCliente(datos);
 
-
-    return { ok: true };
+    return redirect("/"); // Este redirect sirve para rediccionar a donde uno le indique, viene importando de react router dom
+    // return { ok: true };
 }
 
 export const NuevoCliente = () => {
@@ -70,7 +70,7 @@ export const NuevoCliente = () => {
 
                     <input
                         type="submit"
-                        className="mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg"
+                        className="mt-5 w-full bg-blue-800 p-3 uppercase font-bold text-white text-lg cursor-pointer"
                         value="Registrar Cliente"
                     />
                 </Form>
@@ -88,4 +88,9 @@ export const NuevoCliente = () => {
  * 
  * Como usar el children:
  * 1. Se declara como etiquetas con apertura y cierre y lo que se escriba entre las etiquetas se pasan como children
+ * 
+ * Navegacion en react router DOM:
+ * Redirect: Sirve para redireccionar en actions y loaders
+ * Link y NavLink: sirven para navegar en barras de navegacion
+ * navigate: Sirve para redireccionar atraves de un boton
  */
