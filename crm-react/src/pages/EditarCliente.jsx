@@ -1,8 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { Form, useLoaderData, useNavigate } from 'react-router-dom';
-import { obtenerCliente } from '../data/clientes';
+import { Form, redirect, useActionData, useLoaderData, useNavigate } from 'react-router-dom';
+import { actualizarCliente, obtenerCliente } from '../data/clientes';
 import { Formulario } from '../components/Formulario';
+import { Error } from '../components/Error';
 
 // Se crea esta funcion para la obtencion de un cliente y se pasa en el Loader
 export const getUserLoader = async ({params}) => {
@@ -16,11 +17,47 @@ export const getUserLoader = async ({params}) => {
     return cliente;
 }
 
+// Se crea esta funcion para capturar los datos a enviar del formulario
+export const action = async ({request, params}) => {
+
+    const formData = await request.formData();
+
+    // console.log(formData.get("nombre"));
+    // console.log([...formData]);
+    const datos = Object.fromEntries(formData);
+
+    const email = formData.get("email");
+    
+    const errores = []
+    // Validacion del formulario
+    if (Object.values(datos).includes("")) {
+        errores.push("Todos los campos son obligatorios");
+    }
+
+    // Expresion regular para comprobar email
+    let regex = new RegExp("([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\"\(\[\]!#-[^-~ \t]|(\\[\t -~]))+\")@([!#-'*+/-9=?A-Z^-~-]+(\.[!#-'*+/-9=?A-Z^-~-]+)*|\[[\t -Z^-~]*])");
+
+    // Comprobador de expresion regular del email
+    if (!regex.test(email)) {
+        errores.push("El email no es valido");
+    }
+
+    // Retornar datos si hay errores
+    if (Object.keys(errores).length) {
+        return errores;
+    }
+
+    await actualizarCliente(params.clienteId,datos); // Actualizar Cliente
+
+    return redirect("/"); // Este redirect sirve para rediccionar a donde uno le indique, viene importando de react router dom
+
+}
+
 export const EditarCliente = () => {
 
     const navigate = useNavigate();
     const cliente = useLoaderData();
-    
+    const errores = useActionData();
 
 
     return (
@@ -40,7 +77,7 @@ export const EditarCliente = () => {
 
             <div className="bg-white shadow rounded-md md:w-3/4 mx-auto px-5 py-10 mt-8">
 
-                {/* {errores?.length && errores.map( (error, i) => <Error key={i}>{error}</Error> )} */}
+                {errores?.length && errores.map( (error, i) => <Error key={i}>{error}</Error> )}
                 <Form
                     method="POST"
                     noValidate

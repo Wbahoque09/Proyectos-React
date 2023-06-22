@@ -6,7 +6,7 @@ import { Layout } from './components/Layout';
 import { NuevoCliente, action as nuevoClienteAction } from './pages/NuevoCliente';
 import { Inicio, clientesLoader } from './pages/Inicio';
 import { ErrorPage } from './components/ErrorPage';
-import { EditarCliente, getUserLoader } from './pages/EditarCliente';
+import { action as editarClienteAction, EditarCliente, getUserLoader } from './pages/EditarCliente';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +29,7 @@ const router = createBrowserRouter([
         path: "/clientes/:clienteId/editar", // Este path utiliza un ruteo dinamico (:clienteId)
         element: <EditarCliente />,
         loader: getUserLoader,
+        action: editarClienteAction,
         errorElement: <ErrorPage />
       }
     ] // En el children se renderizara todo el resto de rutas creadas, y es lo que captura el outlet en el componente Layout

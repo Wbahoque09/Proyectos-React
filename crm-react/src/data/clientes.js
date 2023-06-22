@@ -30,3 +30,21 @@ export const agregarCliente = async (datos) => {
     }
 
 }
+
+// Funcion creada para hacer peticion de actualizar clientes
+export const actualizarCliente = async (id,datos) => {
+
+    try {
+        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, { // Dentro del fetch se define una ruta, en este caso esta 
+            method: "PUT", // Se define tipo de metodo de la peticion
+            body: JSON.stringify(datos), // Al ser PUT, se pasa un body que requiere la peticion
+            headers: { // Se pasa un headers, que especifica el tipo de contenido de la peticion
+                "Content-Type": "application/json"
+            }
+        });
+        await respuesta.json() // Aqui esperamos un booleano (true o false)
+    } catch (error) {
+        console.log(error);
+    }
+
+}

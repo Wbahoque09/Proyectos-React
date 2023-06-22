@@ -2,7 +2,7 @@
 
 
 export const Formulario = ({cliente}) => {
-    console.log(cliente);
+    
     return (
         <>
             <div className="mb-4">
