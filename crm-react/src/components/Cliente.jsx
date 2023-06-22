@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import { useNavigate } from 'react-router-dom';
+import { Form, useNavigate, redirect } from 'react-router-dom';
 
 export const Cliente = ({cliente}) => {
 
@@ -30,12 +30,15 @@ export const Cliente = ({cliente}) => {
                         Editar
                     </button>
 
-                    <button
-                        type="button"
-                        className="text-red-600 hover:text-red-700 uppercase font-bold text-xs"
-                    >
-                        Eliminar
-                    </button>
+                    <Form>
+                        <button
+                            type="submit"
+                            className="text-red-600 hover:text-red-700 uppercase font-bold text-xs"
+                        >
+                            Eliminar
+                        </button>
+                    </Form>
+                    
                 </td>
             </tr>
         </>
