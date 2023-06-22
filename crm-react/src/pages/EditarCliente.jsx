@@ -11,8 +11,7 @@ export const getUserLoader = async ({params}) => {
             statusText: "Busqueda no encontrada"
         })
     }
-    console.log(cliente);
-    return {}
+    return cliente;
 }
 
 export const EditarCliente = () => {

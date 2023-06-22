@@ -28,6 +28,7 @@ const router = createBrowserRouter([
         path: "/clientes/:clienteId/editar", // Este path utiliza un ruteo dinamico (:clienteId)
         element: <EditarCliente />,
         loader: getUserLoader,
+        errorElement: <ErrorPage />
       }
     ] // En el children se renderizara todo el resto de rutas creadas, y es lo que captura el outlet en el componente Layout
     // El componente Layout es el componente padre y sus hijos estan dentro de children
