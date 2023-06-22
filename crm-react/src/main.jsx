@@ -22,7 +22,8 @@ const router = createBrowserRouter([
       {
         path: "/clientes/nuevo",
         element: <NuevoCliente />,
-        action: nuevoClienteAction // Este action recibe la informacion del formulario y el formulario conocera a donde tiene que mandar la informacion
+        action: nuevoClienteAction, // Este action recibe la informacion del formulario y el formulario conocera a donde tiene que mandar la informacion
+        errorElement: <ErrorPage />
       },
       {
         path: "/clientes/:clienteId/editar", // Este path utiliza un ruteo dinamico (:clienteId)
