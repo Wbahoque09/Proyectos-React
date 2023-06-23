@@ -1,3 +1,4 @@
+/* eslint-disable no-control-regex */
 /* eslint-disable react-refresh/only-export-components */
 
 import { Form, redirect, useActionData, useLoaderData, useNavigate } from 'react-router-dom';
