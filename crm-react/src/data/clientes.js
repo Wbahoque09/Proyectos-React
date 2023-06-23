@@ -48,3 +48,16 @@ export const actualizarCliente = async (id,datos) => {
     }
 
 }
+
+// Funcion creada para realizar la peticion de eliminar cliente
+export const eliminarCliente = async (id) => {
+    try {
+        const respuesta = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, { // Dentro del fetch se define una ruta, en este caso esta 
+            method: "DELETE", // Se define tipo de metodo de la peticion
+        });
+        await respuesta.json() // Aqui esperamos un booleano (true o false)
+    } catch (error) {
+        console.log(error);
+    }
+    // Al ser una peticion con metodo "DELETE", no tiene ni body ni headers
+}

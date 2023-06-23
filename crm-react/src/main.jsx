@@ -7,6 +7,7 @@ import { NuevoCliente, action as nuevoClienteAction } from './pages/NuevoCliente
 import { Inicio, clientesLoader } from './pages/Inicio';
 import { ErrorPage } from './components/ErrorPage';
 import { action as editarClienteAction, EditarCliente, getUserLoader } from './pages/EditarCliente';
+import { action as eliminarClienteAction } from './components/Cliente';
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         loader: getUserLoader,
         action: editarClienteAction,
         errorElement: <ErrorPage />
+      },
+      {
+        path: "/clientes/:clienteId/eliminar",
+        action: eliminarClienteAction,
       }
     ] // En el children se renderizara todo el resto de rutas creadas, y es lo que captura el outlet en el componente Layout
     // El componente Layout es el componente padre y sus hijos estan dentro de children

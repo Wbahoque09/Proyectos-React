@@ -1,6 +1,13 @@
+/* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 
 import { Form, useNavigate, redirect } from 'react-router-dom';
+import { eliminarCliente } from '../data/clientes';
+
+export const action = async ({params}) => {
+    await eliminarCliente(params.clienteId);
+    return redirect("/");
+}
 
 export const Cliente = ({cliente}) => {
 
@@ -30,7 +37,15 @@ export const Cliente = ({cliente}) => {
                         Editar
                     </button>
 
-                    <Form>
+                    <Form
+                        method="POST"
+                        action={`/clientes/${id}/eliminar`} // Este action se pasa la url para poder capturar el id a eliminar
+                        onSubmit={(e) => {
+                            if (!confirm("¿Deseas eliminar este registro?")) { // Se niega el confirm para que este acceda al aceptar y no al cancelar
+                                e.preventDefault();
+                            }
+                        }}
+                    >
                         <button
                             type="submit"
                             className="text-red-600 hover:text-red-700 uppercase font-bold text-xs"
@@ -44,3 +59,9 @@ export const Cliente = ({cliente}) => {
         </>
     )
 }
+
+/**
+ * Etiqueta Form:
+ * Es una etiqueta de react router dom, los metodos y actions que vemos son de este
+ * el onSubmit es de react
+ */
